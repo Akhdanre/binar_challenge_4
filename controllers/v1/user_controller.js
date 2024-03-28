@@ -13,8 +13,7 @@ module.exports = {
                     isSucces: false,
                     code: 404,
                     message: "user data empty"
-                }
-                )
+                })
             }
             return webResponse(res, { data: users })
         } catch (err) {
@@ -50,7 +49,7 @@ module.exports = {
                     message: "User Register failed"
                 })
             }
-            return webResponse(req, { data: user })
+            return webResponse(res, { data: user })
         } catch (err) {
             next(err)
         }

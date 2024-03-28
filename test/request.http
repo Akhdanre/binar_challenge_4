@@ -19,11 +19,22 @@ Content-Type: application/json
     "password" : "rahasia"
 }
 
+###
 POST  http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
     "name" : "akeon deofo",
     "email" : "akoennefo@gmail.com", 
+    "password" : "rahasia"
+}
+
+###
+POST  http://localhost:3000/api/v1/users
+Content-Type: application/json
+
+{
+    "name" : "oukeze",
+    "email" : "oukenv@gmail.com", 
     "password" : "rahasia"
 }
