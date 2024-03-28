@@ -1,3 +1,5 @@
+const user_controller = require("../../controllers/v1/user_controller")
+
 const routes = require("express").Router()
 
 
@@ -8,6 +10,8 @@ routes.get("/", function (req, res) {
         data: null
     })
 })
+
+routes.get("/users", user_controller.show)
 
 
 module.exports = routes
