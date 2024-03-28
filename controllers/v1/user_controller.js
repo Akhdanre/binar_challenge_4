@@ -1,3 +1,5 @@
+const webResponse = require("../../helper/web_response")
+
 const prismaClient = require("@prisma/client").PrismaClient
 const prisma = new prismaClient()
 
@@ -7,17 +9,14 @@ module.exports = {
         try {
             let users = await prisma.user.findMany()
             if (!users) {
-                return res.status(404).json({
-                    status: false,
-                    message: "Users data not found",
-                    data: null
-                })
+                return webResponse(res, {
+                    isSucces: false,
+                    code: 404,
+                    message: "user data empty"
+                }
+                )
             }
-            return res.json({
-                status: true,
-                message: "success",
-                data: users
-            })
+            return webResponse(res, { data: users })
         } catch (err) {
             next(err)
         }
@@ -28,19 +27,13 @@ module.exports = {
             if (id) {
                 let user = await prisma.user.findUnique({ where: { id } })
                 if (!user) {
-                    return res.status(400).json(
-                        {
-                            status: false,
-                            message: `User with id ${id} not found`,
-                            data: null
-                        }
-                    )
+                    return webResponse(res, {
+                        code: 400,
+                        isSucces: false,
+                        message: `user with id ${id} not found`
+                    })
                 }
-                return res.json({
-                    status: true,
-                    message: "success",
-                    data: user
-                })
+                return webResponse(res, { data: user })
             }
         } catch (err) {
             next(err)
@@ -52,17 +45,12 @@ module.exports = {
         try {
             let user = await prisma.user.create({ data: userData })
             if (!user) {
-                return res.status(400).json({
-                    status: false,
-                    message: "User Register Failed",
-                    data: null
+                return webResponse(res, {
+                    code: 400,
+                    message: "User Register failed"
                 })
             }
-            return res.json({
-                status: true,
-                message: "success",
-                data: user
-            })
+            return webResponse(req, { data: user })
         } catch (err) {
             next(err)
         }
