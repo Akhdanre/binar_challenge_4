@@ -3,7 +3,7 @@ const prisma = new prismaClient()
 
 
 module.exports = {
-    show: async (req, res, next) => {
+    index: async (req, res, next) => {
         try {
             let users = await prisma.user.findMany()
             if (!users) {
@@ -18,6 +18,30 @@ module.exports = {
                 message: "success",
                 data: users
             })
+        } catch (err) {
+            next(err)
+        }
+    },
+    show: async (req, res, next) => {
+        let id = Number(req.params.userId)
+        try {
+            if (id) {
+                let user = await prisma.user.findUnique({ where: { id } })
+                if (!user) {
+                    return res.status(400).json(
+                        {
+                            status: false,
+                            message: `User with id ${id} not found`,
+                            data: null
+                        }
+                    )
+                }
+                return res.json({
+                    status: true,
+                    message: "success",
+                    data: user
+                })
+            }
         } catch (err) {
             next(err)
         }

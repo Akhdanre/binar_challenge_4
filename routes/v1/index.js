@@ -11,7 +11,8 @@ routes.get("/", function (req, res) {
     })
 })
 
-routes.get("/users", userController.show)
+routes.get("/users", userController.index)
+routes.get("/users/:userId", userController.show)
 routes.post("/users", userController.create)
 
 
