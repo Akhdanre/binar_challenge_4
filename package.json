@@ -1,0 +1,17 @@
+{
+  "name": "challenge_4_express_prisma",
+  "version": "1.0.0",
+  "description": "Challenge 4 in binar",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "Akhdan Robbani",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "prisma": "^5.11.0"
+  }
+}
