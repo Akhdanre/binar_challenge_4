@@ -19,13 +19,13 @@ model user {
   email        String         @db.VarChar(255)
   password     String         @db.VarChar(100)
   bank_account bank_account[]
-  profile      profile[]
+  profile      profile?
 }
 
 model profile {
   id              Int    @id @default(autoincrement())
   user_id         user   @relation(fields: [userId], references: [id])
-  userId          Int
+  userId          Int    @unique
   identify_type   String
   identify_number Int
   address         String
