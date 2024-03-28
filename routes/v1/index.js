@@ -1,4 +1,4 @@
-const user_controller = require("../../controllers/v1/user_controller")
+const userController = require("../../controllers/v1/user_controller")
 
 const routes = require("express").Router()
 
@@ -11,7 +11,8 @@ routes.get("/", function (req, res) {
     })
 })
 
-routes.get("/users", user_controller.show)
+routes.get("/users", userController.show)
+routes.post("/users", userController.create)
 
 
 module.exports = routes

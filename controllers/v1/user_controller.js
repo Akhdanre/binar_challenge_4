@@ -21,5 +21,26 @@ module.exports = {
         } catch (err) {
             next(err)
         }
+    },
+
+    create: async (req, res, next) => {
+        let userData = req.body
+        try {
+            let user = await prisma.user.create({ data: userData })
+            if (!user) {
+                return res.status(400).json({
+                    status: false,
+                    message: "User Register Failed",
+                    data: null
+                })
+            }
+            return res.json({
+                status: true,
+                message: "success",
+                data: user
+            })
+        } catch (err) {
+            next(err)
+        }
     }
 }
