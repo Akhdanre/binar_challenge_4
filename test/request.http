@@ -3,11 +3,8 @@ GET http://localhost:3000/api/v1
 ###
 GET http://localhost:3000/api/v1/users
 
-
-
 ###
 GET http://localhost:3000/api/v1/users/2
-
 
 ###
 POST  http://localhost:3000/api/v1/users
@@ -16,7 +13,10 @@ Content-Type: application/json
 {
     "name" : "Akhdan Robbani",
     "email" : "oukenzeuma@gmail.com", 
-    "password" : "rahasia"
+    "password" : "rahasia",
+    "address"  : "jl lokananta", 
+    "identify_type" : "passpord",
+    "identify_number" : 1 
 }
 
 ###

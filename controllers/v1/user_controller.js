@@ -40,9 +40,33 @@ module.exports = {
     },
 
     create: async (req, res, next) => {
-        let userData = req.body
+        let { name, email, password, address, identify_type, identify_number } = req.body
         try {
-            let user = await prisma.user.create({ data: userData })
+            let user = await prisma.user.create({
+                data: {
+                    email,
+                    password,
+                    name,
+                    profile: {
+                        create: {
+                            identify_type,
+                            identify_number,
+                            address
+                        }
+                    }
+                },
+                select: {
+                    email: true,
+                    name: true,
+                    profile: {
+                        select: {
+                            identify_number: true,
+                            identify_type: true,
+                            address: true,
+                        }
+                    }
+                }
+            })
             if (!user) {
                 return webResponse(res, {
                     code: 400,
