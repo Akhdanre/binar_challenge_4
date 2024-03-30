@@ -19,6 +19,13 @@ module.exports = {
         try {
             let bankAccount = await prisma.bankAccount.findUnique({ where: { id } })
 
+            if (!bankAccount) {
+                return webResponse(res, {
+                    code: 400,
+                    isSucces: false,
+                    message: "user not registered"
+                })
+            }
             return webResponse(res, {
                 data: bankAccount
             })
@@ -57,6 +64,48 @@ module.exports = {
             }
             next(err)
         }
-    }
+    },
+    upBalance: async (req, res, next) => {
+        let { user_id, balance_transaction } = req.body
+        try {
+            let bankAccount = await prisma.bankAccount.findUnique({ where: { id: user_id } })
+
+            if (!bankAccount) {
+                return webResponse(res, {
+                    code: 400,
+                    isSucces: false,
+                    message: "user not registered"
+                })
+            }
+
+            let updatebankAccount = await prisma.bankAccount.update({
+                data: {
+                    balance: (bankAccount.balance + balance_transaction)
+                }, where: {
+                    id: user_id
+                }
+            })
+            if (!updatebankAccount) {
+                return webResponse(res, {
+                    code: 400,
+                    message: "bad request",
+                    isSucces: false
+                })
+            }
+            return webResponse(res, {
+                body: bankAccount
+            })
+        } catch (err) {
+            if (err.code == 'P2003') {
+                return webResponse(res, {
+                    code: 400,
+                    message: "User not found",
+                    isSuccess: false
+                });
+            }
+            next(err)
+        }
+    },
+
 }
 

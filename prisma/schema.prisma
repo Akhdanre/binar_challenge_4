@@ -39,14 +39,14 @@ model bankAccount {
   balance             Int
   user_id             Int
   referredByUser      transaction[] @relation("referred_byUser")
-  referredToUser      transaction?  @relation("referred_toUser")
+  referredToUser      transaction[] @relation("referred_toUser")
 }
 
 model transaction {
-  id                   Int          @id @default(autoincrement())
-  sourceAccount        bankAccount? @relation("referred_byUser", fields: [sourceAccountId], references: [id])
-  destinationAccount   bankAccount? @relation("referred_toUser", fields: [destinationAccountId], references: [id])
-  amount               Int
-  sourceAccountId      Int
-  destinationAccountId Int          @unique
+  id                     Int          @id @default(autoincrement())
+  sourceAccount          bankAccount? @relation("referred_byUser", fields: [source_account_id], references: [id])
+  destinationAccount     bankAccount? @relation("referred_toUser", fields: [destination_account_id], references: [id])
+  amount                 Int
+  source_account_id      Int
+  destination_account_id Int
 }

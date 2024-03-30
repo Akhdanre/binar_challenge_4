@@ -1,5 +1,6 @@
 const userController = require("../../controllers/v1/user_controller")
 const accountController = require("../../controllers/v1/account_controller")
+const transactionController = require("../../controllers/v1/transaction_controller")
 
 const routes = require("express").Router()
 
@@ -19,6 +20,11 @@ routes.post("/users", userController.create)
 routes.get("/accounts", accountController.index)
 routes.get("/accounts/:accountId", accountController.show)
 routes.post("/accounts", accountController.create)
+routes.post("/accounts/balance", accountController.upBalance)
+
+routes.get("/transactions", transactionController.index)
+routes.get("/transactions/:id", transactionController.show)
+routes.post("/transactions", transactionController.create)
 
 
 module.exports = routes

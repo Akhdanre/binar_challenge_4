@@ -55,3 +55,27 @@ Content-Type: application/json
     "bank_name": "mandiri",
     "bank_account_number": 909234
 }
+
+
+###
+GET  http://localhost:3000/api/v1/transactions
+
+###
+POST http://localhost:3000/api/v1/transactions 
+Content-Type: application/json
+
+{
+    "source_account_id" : 1,
+    "destination_account_id" : 2, 
+    "amount" : 10000
+}
+
+###
+
+POST http://localhost:3000/api/v1/accounts/balance 
+Content-Type: application/json
+
+{
+    "user_id" : 1,
+    "balance_transaction" : 300000
+}
