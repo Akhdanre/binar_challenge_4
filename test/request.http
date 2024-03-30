@@ -38,3 +38,20 @@ Content-Type: application/json
     "email" : "oukenv@gmail.com", 
     "password" : "rahasia"
 }
+
+###
+GET   http://localhost:3000/api/v1/accounts
+
+
+###
+GET   http://localhost:3000/api/v1/accounts/1
+
+###
+POST  http://localhost:3000/api/v1/accounts
+Content-Type: application/json
+
+{
+    "user_id" : 1,
+    "bank_name": "mandiri",
+    "bank_account_number": 909234
+}
