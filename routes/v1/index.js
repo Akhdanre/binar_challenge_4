@@ -20,7 +20,7 @@ routes.post("/users", userController.create)
 routes.get("/accounts", accountController.index)
 routes.get("/accounts/:accountId", accountController.show)
 routes.post("/accounts", accountController.create)
-routes.post("/accounts/balance", accountController.upBalance)
+routes.patch("/accounts/balance", accountController.upBalance)
 
 routes.get("/transactions", transactionController.index)
 routes.get("/transactions/:id", transactionController.show)

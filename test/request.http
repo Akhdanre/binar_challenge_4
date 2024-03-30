@@ -1,12 +1,12 @@
 GET http://localhost:3000/api/v1
 
-###
+### Get All user data
 GET http://localhost:3000/api/v1/users
 
-###
-GET http://localhost:3000/api/v1/users/2
+### Get User BY id
+GET http://localhost:3000/api/v1/users/1
 
-###
+### Create user 
 POST  http://localhost:3000/api/v1/users
 Content-Type: application/json
 
@@ -15,47 +15,81 @@ Content-Type: application/json
     "email" : "oukenzeuma@gmail.com", 
     "password" : "rahasia",
     "address"  : "jl lokananta", 
-    "identify_type" : "passpord",
-    "identify_number" : 1 
+    "identify_type" : "bank",
+    "identify_number" : 23
 }
 
-###
+### Create user 2
 POST  http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
     "name" : "akeon deofo",
     "email" : "akoennefo@gmail.com", 
-    "password" : "rahasia"
+    "password" : "rahasia",
+    "address"  : "jl bengawan", 
+    "identify_type" : "bank",
+    "identify_number" : 64
 }
 
-###
+### Create user 3
 POST  http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
     "name" : "oukeze",
     "email" : "oukenv@gmail.com", 
-    "password" : "rahasia"
+    "password" : "rahasia",
+    "address"  : "jl brantas", 
+    "identify_type" : "bank",
+    "identify_number" : 66
 }
 
-###
+### Get all Data account 
 GET   http://localhost:3000/api/v1/accounts
 
 
-###
+### Get acount data by id
 GET   http://localhost:3000/api/v1/accounts/19
 
-###
+### create account 
 POST  http://localhost:3000/api/v1/accounts
 Content-Type: application/json
 
 {
-    "user_id" : 80,
+    "user_id" : 1,
     "bank_name": "mandiri",
     "bank_account_number": 909234
 }
 
+### create account 2 with different user
+POST  http://localhost:3000/api/v1/accounts
+Content-Type: application/json
+
+{
+    "user_id" : 2,
+    "bank_name": "mandiri",
+    "bank_account_number": 909234
+}
+
+### create account 3 with same user as id 1
+POST  http://localhost:3000/api/v1/accounts
+Content-Type: application/json
+
+{
+    "user_id" : 1,
+    "bank_name": "BRI",
+    "bank_account_number": 909234
+}
+
+### Update Account balance
+PATCH  http://localhost:3000/api/v1/accounts/balance 
+Content-Type: application/json
+
+{
+    "user_id" : 1,
+    "balance_transaction" : 300000
+}
 
 ###
 GET  http://localhost:3000/api/v1/transactions
@@ -68,14 +102,4 @@ Content-Type: application/json
     "source_account_id" : 1,
     "destination_account_id" : 2, 
     "amount" : 10000
-}
-
-###
-
-POST http://localhost:3000/api/v1/accounts/balance 
-Content-Type: application/json
-
-{
-    "user_id" : 1,
-    "balance_transaction" : 300000
 }
