@@ -48,6 +48,13 @@ module.exports = {
                 body: bankAccount
             })
         } catch (err) {
+            if (err.code == 'P2003') {
+                return webResponse(res, {
+                    code: 400,
+                    message: "User not found",
+                    isSuccess: false
+                });
+            }
             next(err)
         }
     }
