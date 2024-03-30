@@ -75,6 +75,13 @@ module.exports = {
             }
             return webResponse(res, { data: user })
         } catch (err) {
+            if (err.code == 'P2002') {
+                return webResponse(res, {
+                    code: 400,
+                    message: "email is already in use",
+                    isSuccess: false
+                });
+            }
             next(err)
         }
     }

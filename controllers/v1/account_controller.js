@@ -52,7 +52,7 @@ module.exports = {
                 })
             }
             return webResponse(res, {
-                body: bankAccount
+                data: bankAccount
             })
         } catch (err) {
             if (err.code == 'P2003') {
@@ -93,7 +93,7 @@ module.exports = {
                 })
             }
             return webResponse(res, {
-                body: bankAccount
+                data: updatebankAccount
             })
         } catch (err) {
             if (err.code == 'P2003') {

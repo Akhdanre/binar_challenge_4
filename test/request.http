@@ -50,7 +50,7 @@ GET   http://localhost:3000/api/v1/accounts
 
 
 ### Get acount data by id
-GET   http://localhost:3000/api/v1/accounts/19
+GET   http://localhost:3000/api/v1/accounts/2
 
 ### create account 
 POST  http://localhost:3000/api/v1/accounts
@@ -91,15 +91,45 @@ Content-Type: application/json
     "balance_transaction" : 300000
 }
 
-###
+### Get all data transaction
 GET  http://localhost:3000/api/v1/transactions
 
-###
+### Create transaction between user id 1 and 2
 POST http://localhost:3000/api/v1/transactions 
 Content-Type: application/json
 
 {
     "source_account_id" : 1,
     "destination_account_id" : 2, 
-    "amount" : 10000
+    "amount" : 100000
+}
+
+### test if source account balance lower than amount send value
+POST http://localhost:3000/api/v1/transactions 
+Content-Type: application/json
+
+{
+    "source_account_id" : 1,
+    "destination_account_id" : 2, 
+    "amount" : 1000000
+}
+
+### Create transaction between user id 1 and 2
+POST http://localhost:3000/api/v1/transactions 
+Content-Type: application/json
+
+{
+    "source_account_id" : 1,
+    "destination_account_id" : 2, 
+    "amount" : 50000
+}
+
+### Create transaction between user id 2 and 1
+POST http://localhost:3000/api/v1/transactions 
+Content-Type: application/json
+
+{
+    "source_account_id" : 2,
+    "destination_account_id" : 1, 
+    "amount" : 100000
 }
